@@ -41,49 +41,25 @@
 <body>
 
 <!-- Fixed navbar -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><?= PROJECT_NAME ?></a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li <?= $controller == 'posts' ? 'class="active"' : '' ?>><a href="#">Home</a></li>
-                <li <?= $controller == 'halo' ? 'class="active"' : '' ?>><a href="halo">Halo admin</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sample dropdown <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#"><? __('Action') ?></a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= $_SESSION['language'] ?> <b
-                                class="caret"></b></a>
-                    <ul class="dropdown-menu">
+        <a class="navbar-brand" href="#"><?= PROJECT_NAME ?></a>
+        <ul class="navbar-nav">
+            <li <?= $controller == 'posts' ? 'class="active"' : '' ?>><a href="#">Home</a></li>
+            <li <?= $controller == 'halo' ? 'class="active"' : '' ?>><a href="halo">Halo admin</a></li>
+            <!-- dropdown list items start -->
+                <li class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= $_SESSION['language'] ?></a>
+                    <div class="dropdown-menu">
                         <?php foreach ($supported_languages as $language): ?>
-                            <li><a href="<?= $controller ?>?language=<?= $language ?>"
+                            <a href="<?= $controller ?>?language=<?= $language ?>"
                                    class="<?= $language == $_SESSION['language'] ? 'active' : '' ?>"><?= $language ?></a>
-                            </li>
                         <?php endforeach ?>
-                    </ul>
+                    </div>
                 </li>
-                <li><a href="settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
-                <li title="<?=__('Log out')?> <?= $auth->name ?>"><a href="logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></a></li>
-        </div>
-        <!--/.nav-collapse -->
+                <!-- dropdown list item end-->
+                <li title="<?=__('Log out')?> <?= $auth->name ?>"><a href="logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true">Log Out</a></li>
+            </ul>
     </div>
 </nav>
 

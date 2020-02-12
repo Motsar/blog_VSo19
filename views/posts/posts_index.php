@@ -1,7 +1,27 @@
+<?php foreach($posts as $post):?>
+<div class="row">
+    <h1><?php echo $post['post_subject']?></h1>
+    <p><?php echo $post['post_text']?></p>
+    <div>
+    <div>Posted:
+        <span class="badge badge-success"><?php echo $post['post_created']?></span>
+    </div>
+    <div>Tags:
+        <span class="badge badge-primary">alice</span>
+        <span class="badge badge-primary">story</span>
+        <span class="badge badge-primary">blog</span>
+        <span class="badge badge-primary">personal</span>
+    </div>
+    </div>
+</div>
+<hr>
+<?php endforeach;?>
+
+
 <h1>Welcome!</h1>
 
 
-<p>This is the welcome controller's default view file. It is located at <code>/views/welcome/posts_index.php</code>.
+<p>This is the posts controller's default view file. It is located at <code>/views/posts/posts_index.php</code>.
 </p>
 
 <h2>Examples</h2>

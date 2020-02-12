@@ -13,6 +13,7 @@ class posts extends Controller
     {
 
         $this->users = get_all("SELECT * FROM users");
+        $this->posts = get_all("SELECT * FROM post");
     }
 
     /**

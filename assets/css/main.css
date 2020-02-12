@@ -10,4 +10,9 @@ table.clickable-rows tr:hover {
 
 a {
     cursor: pointer;
+    margin-right: 1.2em;
+}
+
+nav a{
+    margin-right: 1.2em;
 }

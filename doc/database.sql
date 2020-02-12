@@ -1,84 +1,80 @@
--- MySQL dump 10.13  Distrib 5.6.25, for osx10.6 (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 4.9.1
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1    Database: halo
--- ------------------------------------------------------
--- Server version	5.6.25
+-- Host: 127.0.0.1
+-- Generation Time: Feb 12, 2020 at 09:53 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+SET FOREIGN_KEY_CHECKS=0;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 --
--- Table structure for table `translations`
+-- Database: `blog`
 --
+CREATE DATABASE IF NOT EXISTS `blog` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `blog`;
 
-DROP TABLE IF EXISTS `translations`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `translations` (
-  `translation_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `phrase` varchar(191) NOT NULL,
-  `language` char(3) NOT NULL,
-  `translation` varchar(191) DEFAULT NULL,
-  `controller` varchar(15) NOT NULL,
-  `action` varchar(20) NOT NULL,
-  PRIMARY KEY (`translation_id`),
-  UNIQUE KEY `language_phrase_controller_action_index` (`language`,`phrase`,`controller`,`action`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `translations`
+-- Table structure for table `post`
 --
 
-LOCK TABLES `translations` WRITE;
-/*!40000 ALTER TABLE `translations` DISABLE KEYS */;
-INSERT INTO `translations` VALUES (1,'Action','en','{untranslated}','welcome','index'),(2,'Server returned response in an unexpected format','en','{untranslated}','global','global'),(3,'Forbidden','en','{untranslated}','global','global'),(4,'Server returned an error','en','{untranslated}','global','global'),(5,'Action','en','{untranslated}','halo','index'),(6,'Logout','en','{untranslated}','global','global'),(7,'Settings','en','{untranslated}','global','global'),(8,'Logged in as','en','{untranslated}','global','global'),(9,'Log out','en','{untranslated}','global','global'),(10,'Action','et','{untranslated}','welcome','index'),(11,'Log out','et','{untranslated}','global','global'),(12,'Server returned response in an unexpected format','et','{untranslated}','global','global'),(13,'Forbidden','et','{untranslated}','global','global'),(14,'Server returned an error','et','{untranslated}','global','global'),(15,'Please sign in','et','{untranslated}','global','global'),(16,'Email','et','{untranslated}','global','global'),(17,'Password','et','{untranslated}','global','global'),(18,'Sign in','et','{untranslated}','global','global');
-/*!40000 ALTER TABLE `translations` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `post`;
+CREATE TABLE IF NOT EXISTS `post` (
+  `post_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `post_subject` varchar(255) NOT NULL,
+  `post_text` text NOT NULL,
+  `post_created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `user_id` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`post_id`),
+  KEY `user_id` (`user_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `post`
+--
+
+INSERT INTO `post` (`post_id`, `post_subject`, `post_text`, `post_created`, `user_id`) VALUES
+(2, 'Esimene postitus!', 'Mis on Lorem Ipsum?\r\nLorem Ipsum on lihtsalt proovitekst, mida kasutatakse printimis- ja ladumistööstuses. See on olnud tööstuse põhiline proovitekst juba alates 1500. aastatest, mil tundmatu printija võttis hulga suvalist teksti, et teha trükinäidist. Lorem Ipsum ei ole ainult viis sajandit säilinud, vaid on ka edasi kandunud elektroonilisse trükiladumisse, jäädes sealjuures peaaegu muutumatuks. See sai tuntuks 1960. aastatel Letraset\'i lehtede väljalaskmisega, ja hiljuti tekstiredaktoritega nagu Aldus PageMaker, mis sisaldavad erinevaid Lorem Ipsumi versioone.\r\n\r\nMiks me seda kasutame?\r\nOn teada-tuntud fakt, et lehe kujunduse vaatamisel juhib selle loetav sisu lugeja tähelepanu kõrvale. Lorem Ipsumi kasutamise mõte seisneb selles, et sellel on enam-vähem normaalne jaotus tähti, mitte nagu korduvatel sõnadel \"sisu siin, sisu siin\", nähes välja nagu tavaline loetav tekst. Paljud tekstiredaktorid ja veebilehtede valmistamise programmid kasutavad Lorem Ipsumit vaikimisi mudeltekstina, ja trükkides otsingusse \"lorem ipsum\" võib leida veebilehti, mida ei ole veel nende õige sisuga täidetud. Aastatega on tekkinud mitmeid versioone, mõnikord kogemata, mõnikord meelega (huumori sisestamisega jne).\r\n\r\n', '2020-02-12 18:38:43', 1);
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `users`
 --
 
 DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
-  `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `is_admin` tinyint(4) NOT NULL DEFAULT '0',
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `is_admin` tinyint(4) NOT NULL DEFAULT 0,
   `password` varchar(191) NOT NULL,
   `email` varchar(191) NOT NULL,
-  `deleted` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `name` varchar(191) NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `users`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,1,'$2y$10$vTje.ndUFKHyuotY99iYkO.2aHJUgOsy2x0RMXP1UmrTe6CQsKbtm','demo@example.com',0,'Demo User');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+INSERT INTO `users` (`user_id`, `is_admin`, `password`, `email`, `deleted`, `name`) VALUES
+(1, 1, '$2y$10$vTje.ndUFKHyuotY99iYkO.2aHJUgOsy2x0RMXP1UmrTe6CQsKbtm', 'demo@example.com', 0, 'Demo User');
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+--
+-- Constraints for dumped tables
+--
 
--- Dump completed on 2017-08-02 13:08:47
+--
+-- Constraints for table `post`
+--
+ALTER TABLE `post`
+  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+SET FOREIGN_KEY_CHECKS=1;
+COMMIT;
