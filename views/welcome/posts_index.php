@@ -1,7 +1,7 @@
 <h1>Welcome!</h1>
 
 
-<p>This is the welcome controller's default view file. It is located at <code>/views/welcome/welcome_index.php</code>.
+<p>This is the welcome controller's default view file. It is located at <code>/views/welcome/posts_index.php</code>.
 </p>
 
 <h2>Examples</h2>
@@ -61,13 +61,13 @@ server by jQuery and server's response will be written to the box below.
 <!-- Code for ajax -->
 <script type="text/javascript">
     function success() {
-        ajax("welcome/success", $("#ajax-form").serialize(), function (json) {
+        ajax("posts/success", $("#ajax-form").serialize(), function (json) {
             $(".result").html(json.data);
         });
     }
 
     function error() {
-        ajax("welcome/error", $("#ajax-form").serialize(), function (json) {
+        ajax("posts/error", $("#ajax-form").serialize(), function (json) {
             $(".result").html(json.data);
         });
     }
