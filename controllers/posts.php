@@ -16,6 +16,11 @@ class posts extends Controller
         $this->posts = get_all("SELECT * FROM post");
     }
 
+    function view(){
+    $post_id = $this->params[0];//get post_id from url for example http://localhost/Blog/posts/1 - post_id is 1
+    $this->post = get_first('SELECT * FROM post NATURAL JOIN users WHERE post_id='.$post_id);
+    }
+
     /**
      * This function will only be ran in case of an AJAX request. No view will be attempted to load after this function.
      */
