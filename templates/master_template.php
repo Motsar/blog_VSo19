@@ -45,8 +45,10 @@
     <div class="container">
         <a class="navbar-brand" href="#"><?= PROJECT_NAME ?></a>
         <ul class="navbar-nav">
-            <li <?= $controller == 'posts' ? 'class="active"' : '' ?>><a href="#">Home</a></li>
-            <li <?= $controller == 'halo' ? 'class="active"' : '' ?>><a href="halo">Halo admin</a></li>
+            <li class="nav-item <?= $controller == 'posts' ? 'class="active"' : '' ?>"><a class="nav-link"  href="<?php echo BASE_URL;?>">Posts</a></li>
+            <li class="nav-item <?= $controller == 'Tags' ? 'class="active"' : '' ?>"><a class="nav-link"  href="<?php echo BASE_URL;?>tags">Tags</a></li>
+            <li class="nav-item <?= $controller == 'Users' ? 'class="active"' : '' ?>"><a class="nav-link"  href="<?php echo BASE_URL;?>users">Users</a></li>
+            <li class="nav-item <?= $controller == 'halo' ? 'class="active"' : '' ?>"><a class="nav-link"  href="halo">Halo admin</a></li>
             <!-- dropdown list items start -->
                 <li class="nav-item dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= $_SESSION['language'] ?></a>
