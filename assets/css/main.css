@@ -16,3 +16,8 @@ a {
 nav a{
     margin-right: 1.2em;
 }
+
+.commenter-pic img{
+    max-height: 80px;
+    width: auto;
+}

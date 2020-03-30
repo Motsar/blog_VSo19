@@ -11,18 +11,20 @@ class posts extends Controller
      */
     function index()
     {
-
         $this->posts = get_all("SELECT * FROM post");
         $_tags = get_all('SELECT * FROM post_tags NATURAL JOIN tag');
         foreach ($_tags as $tag){
-            $this->tags[$tag['post_id']][] = $tag['tag_name'];
+            $this->postTags = get_all('SELECT * FROM post_tags NATURAL JOIN tag WHERE post_id='.$tag['post_id']);
+            $this->tags[$tag['post_id']] = $this->postTags;
         }
+
     }
 
     function view(){
     $post_id = $this->params[0];//get post_id from url for example http://localhost/Blog/posts/1 - post_id is 1
     $this->post = get_first('SELECT * FROM post NATURAL JOIN users WHERE post_id='.$post_id);
     $this->tags = get_all('SELECT * FROM post_tags NATURAL JOIN tag WHERE post_id='.$post_id);
+    $this->comments =get_all('SELECT * FROM post_comments NATURAL JOIN comment WHERE post_id='.$post_id);
     }
 
     /**

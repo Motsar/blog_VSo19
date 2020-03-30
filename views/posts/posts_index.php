@@ -7,8 +7,8 @@
         <span class="badge badge-success"><?php echo $post['post_created']?></span>
     </div>
     <div>Tags:
-        <?php foreach($tags[$post['post_id']] as $tag):?>
-        <span class="badge badge-primary"><?php echo $tag?></span>
+        <?php foreach($tags[$post['post_id']] as $postTag):?>
+        <a href="<?php echo BASE_URL;?>tags/view/<?php echo $postTag['tag_id'];?>"><span class="badge badge-primary"><?php echo $postTag['tag_name']?></span></a>
         <?php endforeach;?>
     </div>
     </div>
